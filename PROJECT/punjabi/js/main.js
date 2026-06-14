@@ -55,81 +55,7 @@
 			$('.current-song-name').text(songObj.name)						//adding song name 
 			$('.current-song-album').text(songObj.album)					//adding album name
 		}
-																			/* for (var i = 0; i < fileName.length ; i++) 
-																			{
-																				addSongNameClickEvent(fileName[i],i+1)
-																			}  */	
-																			/* $('#song1').click(function() {
-																					var audio = document.querySelector('audio');
-																					audio.src = fileNames[0];
-																					audio.play();
-																					//toggleSong();
-																					var currentSong = audio.src;
-																					if(currentSong.search(fileNames[0]) != -1)
-																						{
-																							console.log('If statement executing');
-																							toggleSong();
-																						}
-																						else
-																						{
-																							console.log('else statement executing');
-																							audio.src = fileNames[0];
-																							toggleSong();
-																						}
-																				});
-																				$('#song2').click(function() {
-																					var audio = document.querySelector('audio');
-																					audio.src = fileNames[1];
-																					audio.play();
-																					toggleSong();
-																					if(audio.src == fileNames[1])
 
-																						var currentSong = audio.src;
-																					if(currentSong.search(fileNames[1]) != -1)	
-																						{
-																						toggleSong();
-																						}
-																						else {
-																						audio.src = fileNames[1];
-																						toggleSong();
-																						}
-																				});																			
-																				$('#song3').click(function() {
-																					var audio = document.querySelector('audio');
-																					audio.src = fileNames[2];
-																					audio.play();
-																					toggleSong();
-																					if(audio.src == fileNames[2])
-																					var currentSong = audio.src;
-																					if(currentSong.search(fileNames[2]) != -1)	
-																						{
-																							toggleSong();
-																						}
-																						else {
-																							audio.src = fileNames[2];
-																							toggleSong();
-																						}
-
-																				});
-																				
-																				$('#song4').click(function() {
-																					var audio = document.querySelector('audio');
-																					audio.src = fileNames[3];
-																					audio.play();
-																					toggleSong();
-																					if(audio.src == fileNames[3])
-																					var currentSong = audio.src;
-																					if(currentSong.search(fileNames[3]) != -1)	
-																						{
-																							toggleSong();
-																						}
-																						else {
-																							audio.src = fileNames[3];
-																							toggleSong();
-																						}
-																				});
-																				
-																			 */	
 		function fancyTimeFormat(time)										//time duration ko : me show krne ke liye 
 		{																	// Hours, minutes and seconds
 		var hrs = ~~(time / 3600);
@@ -154,33 +80,10 @@
 			$('.time-elapsed').text(currentTime);						//dono ko add kra diya 
 			$('.song-duration').text(duration);					
 		}
-																		/* var songName1 = 'Badri Ki Dulhania (Title Track)';
-																		var songName2 = 'Humma Song';
-																		var songName3 = 'Nashe Si Chadh Gayi';
-																		var songName4 = 'The Breakup Song'; 
-																		var songList = ['Badri Ki Dulhania (Title Track)','Humma Song', 'Nashe Si Chadh Gayi', 'The Breakup Song']; 
-																		var artistList = ['Neha Kakkar',' Monali Thakur',' Ikka Singh', 'Dev Negi'];
-																		var albumList = ['Badrinath ki Dulhania','Ok Jaanu','Befikre','Ae Dil Hai Mushkil'];
-																		var durationList = ['2:56','3:15','2:34','2:29']; 
-																		 */
-	
 
 		window.onload = function() {									// ye funn window ke load hone pr khud chlta hai 
 			changeCurrentSongDetails(songs[0]);
-			
 
-			
-			
-			
-			
-																		/* for(var i=0;i<=songList.length;i++){
-																			var name= "#song"+ (i+1);
-																			var song=$(name);
-																		song.find('.song-name').text(songList[i]); 
-																		song.find('.song-artist').text(artistList[i]);
-																		song.find('.song-album').text(albumList[i]); // Added
-																		song.find('.song-length').text(durationList[i]); 
-																		} */
 			 for(var i =0; i < songs.length;i++) 						//	har song ko travel krne ke kiya for loop
 			{
 				var obj = songs[i];
@@ -193,12 +96,6 @@
 				addSongNameClickEvent(obj,i+1);								
 			}
 
-		
-			
-																	/*$('#song1 .song-artist').text(artistList[0]);
-																	$('#song2 .song-artist').text(artistList[1]);
-																	$('#song3 .song-artist').text(artistList[2]);
-																	$('#song4 .song-artist').text(artistList[3]); */
 			updateCurrentTime();									// ye current time update krta HAI 
 			//$('#songs').DataTable();
 			$('#songs').DataTable({paging: false});					//data tables me songs ko load kraya 
@@ -220,7 +117,8 @@
 			song.pause();											// play ko pause kr diya 	
 			}
 		}
-		$('.welcome-screen button').on('click', function() {
+		$('.welcome-screen form').on('submit', function(e) {
+			e.preventDefault();
 				//var message = "Welcome,to songify"+kundan;
 				//$('.audio').attr('src','song1.mp3');
 				//$('.main .user-name').text(message);						
@@ -249,17 +147,14 @@
                 audio.currentTime -= 10;
 				}, 200);											// this is use to skip the duration of the song
 		});
-		
-		
-		
+
 		$('body').on('click', function() 
 		{
 		
 			setTimeout(function(){ $(".user-name").addClass("animated swing");	}, 150);
 			setTimeout(function(){ $(".user-name").removeClass("animated swing");	}, 300);
 		});
-		
-		
+
 		$('body').on('keypress', function(event)
 		{
 			var target = event.target;
@@ -306,11 +201,7 @@
 		}
 		else if(willLoop == 1) 
 		{
-			/* var nextSongObj = songs[0];
-			audio.src = nextSongObj.fileName;
-			toggleSong();
-			changeCurrentSongDetails(nextSongObj);
-			currentSongNumber =  1; */
+			
 		}
 		else 
 		{
@@ -324,29 +215,4 @@
     if (n >= excluded) n++;
     return n;
 }
-	/* $(function () {
-    var audio = document.querySelector('audio');
-    audio.addEventListener('durationchange', function (e) {
-        $('.fa-step-forward').mousedown(function () {
-            setInterval(function () {
-                audio.currentTime += 10;
-            }, 200);
-        }).mouseup(function () {
-            // Continue to normal
-        });
-
-        $('.fa-step-backward').mousedown(function () {
-            setInterval(function () {
-                audio.currentTime += 10;
-            }, 200);
-        }).mouseup(function () {
-            // Continue to normal
-        });
-    });
-
-}); */
-
-
-
-
 
